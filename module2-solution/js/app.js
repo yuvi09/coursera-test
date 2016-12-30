@@ -31,37 +31,39 @@ function BoughtController(ShoppingListService) {
 
 //ShoppingListService 
 function ShoppingListService() {
-    
-    // TODO: Implement MaxItems
-
     var service = this;
 
     //List for shopping items
     var shoppingItems = [
         {
-            name: "Cilantro Bunch",
-            quantity: 1
+            name: "Avocados",
+            quantity: 10
+        },
+        {
+            name: "Tomatoes",
+            quantity: 3
         },
         {
             name: "Onions",
             quantity: 2
         },
         {
-            name: "Jalapenos",
-            quantity: 3
+            name: "Cilantro Bunch",
+            quantity: 1
         },
         {
-            name: "Avocados",
-            quantity: 5
+            name: "Jalapenos",
+            quantity: 3
         },
         {
             name: "Limes",
             quantity: 5
         },
         {
-            name: "Tomatoes",
-            quantity: 5
+            name: "Bag of Tortilla Chips",
+            quantity: 3
         }
+        
     ];
 
     //List for bought items
