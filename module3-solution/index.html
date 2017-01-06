@@ -19,6 +19,8 @@
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="nidCtrl.narrowButton(nidCtrl.searchTerm);">Narrow It Down For Me!</button>
     </div>
+    <div class="loader" ng-if="nidCtrl.waiting === true">
+          </div>
 
     
     <!-- found-items should be implemented as a component -->
@@ -26,8 +28,7 @@
         items="nidCtrl.found"
         on-remove="nidCtrl.removeItem(index)"></found-items>
 
-    <div class="loader" ng-if="nidCtrl.waiting === true">
-          </div>
+    
     <div class="error" style="clear:both;" ng-if="nidCtrl.error === true">
         Nothing Found
     </div>
