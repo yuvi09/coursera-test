@@ -1,0 +1,16 @@
+<div style="clear:both;" ng-if="foundItemsList.items.length>0">     
+    <ul style="list-style-type: none;">
+            <li >
+                  <span style="width:200px; display: inline-block; margin:10px;"> <b>Name</b></span>
+                  <span style="width:100px; display: inline-block; margin:10px;"> <b>Short Name</b> </span>
+                  <span style="width:400px; display: inline-block; margin:10px;"> <b>Description</b> </span>
+                  <span style="width:100px; display: inline-block; margin:10px;"> </span>
+            </li>
+            <li ng-repeat="menuItem in foundItemsList.items">
+                  <span style="width:200px; display: inline-block; margin:10px;"> {{menuItem.name}} </span>
+                  <span style="width:100px; display: inline-block; margin:10px;"> {{menuItem.short_name}} </span>
+                  <span style="width:400px; display: inline-block; margin:10px;" > {{menuItem.description}}  </span>
+                  <span style="width:100px; display: inline-block; margin:10px;"> <button class="btn btn-warning" ng-click="foundItemsList.onRemove({index: $index});" >Don't want this one!</button> </span>
+            </li>
+      </ul>
+</div>
