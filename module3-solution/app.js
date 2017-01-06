@@ -17,7 +17,7 @@
         nidCtrl.narrowButton = function (searchTerm) {
             if (searchTerm === undefined || searchTerm === "") {
                 nidCtrl.error = true;
-                
+                nidCtrl.found = []; 
             }
             else {
                 var promise = MenuSearchService.getMatchedMenuItem(searchTerm);
