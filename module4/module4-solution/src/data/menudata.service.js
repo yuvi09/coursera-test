@@ -20,10 +20,13 @@
 
         //service to get Menu Items for a given category
         service.getItemsForCategory = function (categoryShortName) {
+            
             var response = $http({
                 method: "GET",
                 url: (ApiBasePath + "/menu_items.json?category=" + categoryShortName)
             });
+
+            
             return response;
         };
 

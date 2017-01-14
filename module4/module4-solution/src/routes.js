@@ -31,7 +31,7 @@ function RouteConfig($stateProvider, $urlRouterProvider) {
 
     .state('itemDetail', {
         url: '/item-detail/{shortName}',
-        templateUrl: 'src/menuapp/templates/item-detail.template.html',
+        templateUrl: 'src/menuapp/templates/main-menuitems.template.html',
         controller: 'ItemDetailController as itemDetailCtrl', 
         resolve: {
             items: ['$stateParams', 'MenuDataService', 
