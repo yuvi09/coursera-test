@@ -5,14 +5,8 @@
       
       <form name='regForm'  novalidate >
 
-          <!--
-          <input type="email" name="email" placeholder="Email" 
-          ng-model="reg.user.email"
-          required>
-          <span ng-if="regForm.email.$invalid && regForm.email.$touched" class="text-center">
-            Must be a valid email address: handle@domain format
-          </span>
-          <br>
+          
+          
 
           <input type="text" name="firstname" placeholder="First Name"
           ng-model="reg.user.firstname"
@@ -45,7 +39,13 @@
           </span>
           <br>
 
-        
+        <input type="email" name="email" placeholder="Email" 
+          ng-model="reg.user.email"
+          required>
+          <span ng-if="regForm.email.$invalid && regForm.email.$touched" class="text-center">
+            Must be a valid email address: handle@domain format
+          </span>
+          <br>
 
         <input type="text" name="phone" placeholder="Phone ###-###-####"
           ng-model="reg.user.phone"
@@ -54,8 +54,6 @@
             Phone must be in the format ###-###-####.
           </span>
           <br>
-          
-          -->
 
 
           <input type="text" name="favmenunumber" placeholder="Favorite Menu Number - A1, C12, SP23, etc."
@@ -64,6 +62,8 @@
           <span ng-if="regForm.favmenunumber.$invalid && regForm.favmenunumber.$touched">
             Menu Number must be alphanumeric digits between 2 and 4 characters. E.g. A1, C12, SP23, etc.
           </span>
+          <span ng-if="regForm.favmenunumber.$valid && regForm.$submitted && !reg.menuItemFound">No such menu number exists</span>
+          
           <br>
 
           
@@ -71,11 +71,9 @@
           ng-disabled="regForm.$invalid"
           ng-click="reg.submit()" class="submit-button">Sign Up</button>
 
-          
-          
       </form>
 
-      <div ng-if="reg.completed">
+      <div ng-if="reg.completed" style="margin-top:15px;">
               Thank You for Signing Up!
           </div>
     </fieldset>

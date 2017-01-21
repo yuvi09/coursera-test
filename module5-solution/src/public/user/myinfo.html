@@ -1,28 +1,41 @@
-<H3>My Info</H3>
+
 <div ng-controller="ProfileController as reg" class="container">
-  
-  First Name: {{reg.profile.firstName}}
-  Favorite Menu Item: {{reg.profile.favMenuItem}}
+  <div ng-if="reg.profile.isRegistered" class="text-center">
+          <H3>My Info</H3>
 
-  <div class="menu-item-tile col-md-6">
-  <div class="row">
-    <div class="col-sm-5">
-      <div class="menu-item-photo">
-        <div>{{reg.menuItem.short_name}}</div>
-        <img class="img-responsive" width="250" height="150" ng-src="{{reg.basePath}}/images/{{reg.menuItem.short_name}}.jpg" alt="{{reg.menuItem.name}}">
-      </div>
-      <div class="menu-item-price">{{reg.menuItem.price_small | currency}}<span> {{reg.menuItem.small_portion_name}}</span> {{reg.menuItem.price_large | currency}} <span>{{reg.menuItem.large_portion_name}}</span></div>
-    </div>
-    <div class="menu-item-description col-sm-7">
-      <h3 class="menu-item-title">{{reg.menuItem.name}}</h3>
-      <p class="menu-item-details">{{reg.menuItem.description}}</p>
-    </div>
+          <div style="margin-bottom:10px;"> 
+            First Name: {{reg.profile.firstName}} 
+            <br>
+            Last Name: {{reg.profile.lastName}}
+            <br> 
+            Email: {{reg.profile.email}}
+            <br> 
+            Phone: {{reg.profile.phone}}
+            <br>
+            Favorite Menu Item: 
+          </div>
+
+          <div class="menu-item-tile col-md-6">
+          <div class="row">
+             
+            <div class="col-sm-5">
+              <div class="menu-item-photo">
+                <div>{{reg.menuItem.short_name}}</div>
+                <img class="img-responsive" width="250" height="150" ng-src="{{reg.basePath}}/images/{{reg.menuItem.short_name}}.jpg" alt="{{reg.menuItem.name}}">
+              </div>
+              <div class="menu-item-price" style="display:none;">{{reg.menuItem.price_small | currency}}<span> {{reg.menuItem.small_portion_name}}</span> {{reg.menuItem.price_large | currency}} <span>{{reg.menuItem.large_portion_name}}</span></div>
+            </div>
+            <div class="menu-item-description col-sm-7">
+              <h3 class="menu-item-title">{{reg.menuItem.name}}</h3>
+              <p class="menu-item-details">{{reg.menuItem.description}}</p>
+            </div>
+          </div>
+          <hr class="visible-xs">
+        </div>
   </div>
-  <hr class="visible-xs">
-</div>
 
 
-    <div ng-if="!reg.profile.isRegistered">
+    <div ng-if="!reg.profile.isRegistered" class="text-center">
     Not Signed Up Yet. <a ui-sref="public.signup"> Sign Up Now ! </a>
     </div>
 </div>

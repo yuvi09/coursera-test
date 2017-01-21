@@ -15,30 +15,26 @@ function ProfileController(ProfileService, MenuService, ApiPath) {
   reg.basePath = ApiPath;
 
   reg.submit = function () {
-      reg.completed = true;
-      profile.firstName = reg.user.firstname;
-      profile.lastName = reg.user.lastname;
-      profile.email = reg.user.email;
-      profile.phone = reg.user.phone;
+      reg.completed = false;
+      reg.menuItemFound = false;
+      // check to see if the menu item entered by user exist
+      var promise = MenuService.getMenuItem(reg.user.favmenunumber);
+      promise.then(function (response) {
+          reg.menuItemFound = true;
+          profile.firstName = reg.user.firstname;
+          profile.lastName = reg.user.lastname;
+          profile.email = reg.user.email;
+          profile.phone = reg.user.phone;
+          profile.favMenuItem = reg.user.favmenunumber;
+          ProfileService.saveProfileInfo(profile);
+          reg.completed = true;
+        })
+        .catch (function (error) {
+            reg.menuItemFound = false;
+            console.log("GetMenuItem Failed");
+        });
 
-      //Validate Menu Number
-      //MenuService.validateMenuNumber(reg.user.favmenunumber);
-      
-      var promise = MenuService.getMenuItem(profile.favMenuItem);
-
-          promise.then(function (response) {
-              reg.menuItemFound = true;
-              //console.log("reg.menuItemDetail", reg.menuItemDetail);
-              
-          })
-          .catch (function (error) {
-              reg.menuItemFound = false;
-              console.log("GetMenuItem Failed");
-          });
-
-      profile.favMenuItem = reg.user.favmenunumber;
-      //ProfileService.saveProfileInfo(reg.user.firstname, "Dodia", "2223334455");
-      ProfileService.saveProfileInfo(profile);
+       
   };
 
   profile = ProfileService.getProfileInfo();
@@ -52,14 +48,10 @@ function ProfileController(ProfileService, MenuService, ApiPath) {
 
           promise.then(function (response) {
               reg.menuItem = response;
-              //console.log("reg.menuItemDetail", reg.menuItemDetail);
-              
           })
           .catch (function (error) {
               console.log("GetMenuItem Failed");
           });
-
-          //reg.menuItemDetail = MenuService.getMenuItem(profile.favMenuItem);
       }
       
   }
@@ -67,6 +59,8 @@ function ProfileController(ProfileService, MenuService, ApiPath) {
 
   
 }
+
+
 
 
 })();
