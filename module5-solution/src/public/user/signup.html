@@ -49,6 +49,7 @@
 
         <input type="text" name="phone" placeholder="Phone ###-###-####"
           ng-model="reg.user.phone"
+          required
           pattern="(\d{3})-(\d{3})-(\d{4})">
           <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
             Phone must be in the format ###-###-####.
@@ -58,6 +59,7 @@
 
           <input type="text" name="favmenunumber" placeholder="Favorite Menu Number - A1, C12, SP23, etc."
           ng-model="reg.user.favmenunumber"
+          required
           pattern="([A-Z]{1,2}[0-9]{1,3})">
           <span ng-if="regForm.favmenunumber.$invalid && regForm.favmenunumber.$touched">
             Menu Number must be alphanumeric digits between 2 and 4 characters. E.g. A1, C12, SP23, etc.
