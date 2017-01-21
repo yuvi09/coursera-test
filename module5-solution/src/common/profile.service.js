@@ -39,6 +39,8 @@
         service.isRegistered = function () {
             return isRegistered;
         };
+
+        
     }
 
 })();

@@ -4,13 +4,15 @@
 angular.module('public')
 .controller('ProfileController', ProfileController);
 
-ProfileController.$inject = ['ProfileService', 'MenuService'];
-function ProfileController(ProfileService, MenuService) {
+ProfileController.$inject = ['ProfileService', 'MenuService', 'ApiPath'];
+function ProfileController(ProfileService, MenuService, ApiPath) {
   var reg = this;
 
   var profile = {};
-
   var profileIsRegistered = false;
+  var isFavMenuNumberValid = false;
+
+  reg.basePath = ApiPath;
 
   reg.submit = function () {
       reg.completed = true;
@@ -18,15 +20,31 @@ function ProfileController(ProfileService, MenuService) {
       profile.lastName = reg.user.lastname;
       profile.email = reg.user.email;
       profile.phone = reg.user.phone;
+
+      //Validate Menu Number
+      //MenuService.validateMenuNumber(reg.user.favmenunumber);
+      
+      var promise = MenuService.getMenuItem(profile.favMenuItem);
+
+          promise.then(function (response) {
+              reg.menuItemFound = true;
+              //console.log("reg.menuItemDetail", reg.menuItemDetail);
+              
+          })
+          .catch (function (error) {
+              reg.menuItemFound = false;
+              console.log("GetMenuItem Failed");
+          });
+
       profile.favMenuItem = reg.user.favmenunumber;
       //ProfileService.saveProfileInfo(reg.user.firstname, "Dodia", "2223334455");
       ProfileService.saveProfileInfo(profile);
   };
 
   profile = ProfileService.getProfileInfo();
-  profileIsRegistered = ProfileService.isRegistered();
+  profile.isRegistered = ProfileService.isRegistered();
 
-  if (profile !== undefined && profileIsRegistered === true) {
+  if (profile !== undefined && profile.isRegistered === true) {
       reg.profile = profile;
       if (profile.favMenuItem !== undefined && profile.favMenuItem !== "") {
           
@@ -34,7 +52,7 @@ function ProfileController(ProfileService, MenuService) {
 
           promise.then(function (response) {
               reg.menuItem = response;
-              console.log("reg.menuItemDetail", reg.menuItemDetail);
+              //console.log("reg.menuItemDetail", reg.menuItemDetail);
               
           })
           .catch (function (error) {
@@ -44,9 +62,6 @@ function ProfileController(ProfileService, MenuService) {
           //reg.menuItemDetail = MenuService.getMenuItem(profile.favMenuItem);
       }
       
-  }
-  else {
-      reg.message = "Not Signed Up Yet. Sign up Now!";
   }
   
 

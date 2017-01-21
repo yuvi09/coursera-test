@@ -1,6 +1,6 @@
 <H3>My Info</H3>
-<div ng-controller="ProfileController as reg" >
-  Inside controller.
+<div ng-controller="ProfileController as reg" class="container">
+  
   First Name: {{reg.profile.firstName}}
   Favorite Menu Item: {{reg.profile.favMenuItem}}
 
@@ -22,8 +22,8 @@
 </div>
 
 
-  <div>
-      {{reg.message}}
-  </div>
+    <div ng-if="!reg.profile.isRegistered">
+    Not Signed Up Yet. <a ui-sref="public.signup"> Sign Up Now ! </a>
+    </div>
 </div>
 

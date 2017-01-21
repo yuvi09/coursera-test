@@ -204,4 +204,16 @@ a[ui-sref="admin.auth"] {
 
 input {
   color: black;
+  margin: 5px;
+  width: 300px;
+}
+
+.submit-button {
+  color: #951C49;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.submit-button.ng-invalid {
+  color: darkslategray;
 }
